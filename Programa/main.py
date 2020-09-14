@@ -1,3 +1,48 @@
+def AcMenor():
+    i = escala.index(acorde[0])
+    indices = [i, (i + 3) % len(escala), (i + 7) % len(escala)]
+
+    if '#' in acorde or 'b' in acorde:
+        i = escala.index(acorde[0:2])
+        indices = [i, (i + 3) % len(escala), (i + 7) % len(escala)]
+
+    triade = [escala[idx] for idx in indices]
+    x = f'A fundamental é \033[1;94m{triade[0]}\033[m, ' \
+        f'a terça é \033[1;94m{triade[1]}\033[m e a quinta é \033[1;94m{triade[2]}\033[m.'
+    print('=' * 50)
+    print(x.center(50))
+    print('=' * 50)
+
+
+def AcMaior():
+    i = escala.index(acorde[0])
+    indices = [i, (i + 4) % len(escala), (i + 7) % len(escala)]
+
+    if '#' in acorde or 'b' in acorde:
+        i = escala.index(acorde[0:2])
+        indices = [i, (i + 4) % len(escala), (i + 7) % len(escala)]
+
+    triade = [escala[idx] for idx in indices]
+    x = f'A fundamental é \033[1;32m{triade[0]}\033[m, ' \
+        f'a terça é \033[1;32m{triade[1]}\033[m e a quinta é \033[1;32m{triade[2]}\033[m.'
+    print('=' * 50)
+    print(x.center(50))
+    print('=' * 50)
+
+
+def Setima():
+    i = (escala.index(acorde[0]) + 10) % len(escala)
+    seti = escala[i]
+
+    if '#' in acorde or 'b' in acorde:
+        i = (escala.index(acorde[0:2]) + 10) % len(escala)
+        seti = escala[i]
+    s = f'Sua sétima é \033[1;35m{seti}\033[m.'
+    print('=' * 50)
+    print(s.center(50))
+    print('=' * 50)
+
+
 k = 'Dicionário Musical'
 print('=' * 50)
 print(k.center(50))
@@ -28,34 +73,10 @@ while True:
         break
 
 if 'm' in acorde:  # se um acorde menor
-    i = escala.index(acorde[0])
-    indices = [i, (i + 3) % len(escala), (i + 7) % len(escala)]
-
-    if '#' in acorde or 'b' in acorde:
-        i = escala.index(acorde[0:2])
-        indices = [i, (i + 3) % len(escala), (i + 7) % len(escala)]
-
-    triade = [escala[idx] for idx in indices]
-    x = f'A fundamental é \033[1;94m{triade[0]}\033[m, ' \
-        f'a terça é \033[1;94m{triade[1]}\033[m e a quinta é \033[1;94m{triade[2]}\033[m.'
-    print('=' * 50)
-    print(x.center(50))
-    print('=' * 50)
+    AcMenor()
 
 else:  # se for um acorde maior
-    i = escala.index(acorde[0])
-    indices = [i, (i + 4) % len(escala), (i + 7) % len(escala)]
-
-    if '#' in acorde or 'b' in acorde:
-        i = escala.index(acorde[0:2])
-        indices = [i, (i + 4) % len(escala), (i + 7) % len(escala)]
-
-    triade = [escala[idx] for idx in indices]
-    x = f'A fundamental é \033[1;32m{triade[0]}\033[m, ' \
-        f'a terça é \033[1;32m{triade[1]}\033[m e a quinta é \033[1;32m{triade[2]}\033[m.'
-    print('=' * 50)
-    print(x.center(50))
-    print('=' * 50)
+    AcMaior()
 
 setima = input('Deseja saber a sétima do acorde? [S/N] ').upper()
 while True:
@@ -66,13 +87,4 @@ while True:
         break
 
 if setima == 'S':
-    i = (escala.index(acorde[0]) + 10) % len(escala)
-    seti = escala[i]
-
-    if '#' in acorde or 'b' in acorde:
-        i = (escala.index(acorde[0:2]) + 10) % len(escala)
-        seti = escala[i]
-    s = f'Sua sétima é \033[1;35m{seti}\033[m.'
-    print('=' * 50)
-    print(s.center(50))
-    print('=' * 50)
+    Setima()
